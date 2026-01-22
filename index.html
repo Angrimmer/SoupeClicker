@@ -48,26 +48,24 @@
       <aside class="panel shop">
         <div class="panel__head">
           <h2>Améliorations</h2>
-          <p class="subtitle">Achète des chats et des outils.</p>
         </div>
         <div class="shop__list">
-          <button class="card" type="button" disabled>
+          <button class="card" type="button" id="buySpoon" data-upgrade="spoon">
             <div class="card__title">Cuillère en bois</div>
             <div class="card__meta">+1 par clic</div>
-            <div class="card__cost">Coût : 15</div>
+            <div class="card__cost">Coût de base : 15 (puis x1.15/niveau)</div>
           </button>
-          <button class="card" type="button" disabled>
+          <button class="card" type="button" id="buyCommis" data-upgrade="commis">
             <div class="card__title">Chat commis</div>
-            <div class="card__meta">+0.1 / seconde</div>
-            <div class="card__cost">Coût : 25</div>
+            <div class="card__meta">+0.2 / seconde</div>
+            <div class="card__cost">Coût de base : 50 (puis x1.15/niveau)</div>
           </button>
-          <button class="card" type="button" disabled>
+          <button class="card" type="button" id="buyPot" data-upgrade="pot">
             <div class="card__title">Marmite XXL</div>
-            <div class="card__meta">x1.2 production</div>
-            <div class="card__cost">Coût : 100</div>
+            <div class="card__meta">x1.12 production</div>
+            <div class="card__cost">Coût : 150 (puis x1.15/niveau)</div>
           </button>
         </div>
-        <p class="tiny-note">pas encore de JS ici, du coup pas d'animation ou de suite -comme la vie-</p>
       </aside>
     </section>
   </main>
