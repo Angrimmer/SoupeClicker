@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoupeClicker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="app">
+    <header class="topbar">
+      <div>
+        <h1>SoupeClicker</h1>
+        <p class="subtitle">Des chats. Une marmite. Beaucoup de soupe.</p>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat__label">Bols de soupe</div>
+          <div class="stat__value" id="soups">0</div>
+        </div>
+        <div class="stat">
+          <div class="stat__label">Par clic</div>
+          <div class="stat__value" id="spc">1</div>
+        </div>
+        <div class="stat">
+          <div class="stat__label">Par seconde</div>
+          <div class="stat__value" id="sps">0</div>
+        </div>
+      </div>
+    </header>
+    <section class="layout">
+      <section class="panel">
+        <div class="hero">
+          <div class="hero__art" aria-hidden="true">
+            <div class="pot"></div>
+            <div class="cat"></div>
+          </div>
+          <button class="big-btn" id="stirBtn" type="button">
+            <!--Touiller la soupe-->
+            <span class="big-btn__hint">(+<span id="spcInline">1</span>)</span>
+          </button>
+          <p class="tiny-note">
+            <!-- pour le moment : le visuel minimal, juste rendre le clic “satisfaisant” plus tard (petit bounce/son). -->
+          </p>
+        </div>
+      </section>
+      <aside class="panel shop">
+        <div class="panel__head">
+          <h2>Améliorations</h2>
+          <p class="subtitle">Achète des chats et des outils.</p>
+        </div>
+        <div class="shop__list">
+          <button class="card" type="button" disabled>
+            <div class="card__title">Cuillère en bois</div>
+            <div class="card__meta">+1 par clic</div>
+            <div class="card__cost">Coût : 15</div>
+          </button>
+          <button class="card" type="button" disabled>
+            <div class="card__title">Chat commis</div>
+            <div class="card__meta">+0.1 / seconde</div>
+            <div class="card__cost">Coût : 25</div>
+          </button>
+          <button class="card" type="button" disabled>
+            <div class="card__title">Marmite XXL</div>
+            <div class="card__meta">x1.2 production</div>
+            <div class="card__cost">Coût : 100</div>
+          </button>
+        </div>
+        <p class="tiny-note">pas encore de JS ici, du coup pas d'animation ou de suite -comme la vie-</p>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>
