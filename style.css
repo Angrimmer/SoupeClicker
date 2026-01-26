@@ -202,6 +202,43 @@ h2{ margin:0; font-size: 18px; }
   line-height: 1.35;
 }
 
+.toast-layer{
+  position: fixed;
+  top: 16px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.toast{
+  pointer-events: none;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(12, 17, 40, 0.96);
+  border: 1px solid rgba(255,255,255,.14);
+  color: #e8eaf4;
+  font-size: 13px;
+
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: toastIn 200ms ease-out forwards;
+}
+
+.toast--out{
+  animation: toastOut 220ms ease-in forwards;
+}
+
+@keyframes toastIn{
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toastOut{
+  to { opacity: 0; transform: translateY(-10px); }
+}
+
 @media (max-width: 860px){
   .layout{ grid-template-columns: 1fr; }
   .stats{ justify-content: flex-start; }
