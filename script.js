@@ -29,14 +29,14 @@ function spoonCost() {
 let commisLevel = 0;
 const commisBaseCost = 50;
 function commisCost() {
-  return Math.ceil(commisBaseCost * (1.15 ** commisLevel)); 
+  return Math.ceil(commisBaseCost * (1.2 ** commisLevel)); 
 }
 
 let potLevel = 0;
 const potBaseCost = 150;
 const potMult = 1.12;
 function potCost() {
-  return Math.ceil(potBaseCost * (1.15 ** potLevel)); 
+  return Math.ceil(potBaseCost * (1.25 ** potLevel)); 
 }
 
 function globalMultiplier() {
