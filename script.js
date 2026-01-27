@@ -99,6 +99,7 @@ buyCommisBtn.addEventListener("click", (e) => {
   baseSPS += 0.2;   
   recomputeRates();
   checkAchievements()
+  spawnCommisCat();
   render();
 });
 
@@ -275,4 +276,39 @@ function checkAchievements() {
     achPot5 = true;
     showToast("Succès débloqué : Big Bang de soupe !");
   }
+}
+
+// random cat chaos layer
+
+const chaosLayer = document.querySelector("#chaosLayer");
+const catTypes = ["cat1", "cat2", "cat3", "cat4", "cat5", "cat6"];
+
+function randInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+} 
+
+function spawnCommisCat() {
+  if (!chaosLayer) return;
+
+  const el = document.createElement("div");
+  el.classList.add("cat-sprite");
+
+  const type = catTypes[randInt(0, catTypes.length - 1)];
+  el.classList.add(type);
+
+  const size = 64;
+  const padding = 4;
+
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+
+  el.style.left = randInt(padding, Math.max(padding, w - size - padding)) + "px";
+  el.style.top  = randInt(padding, Math.max(padding, h - size - padding)) + "px";
+
+  // Bonus chaos : rotation + random scale
+  const scale = randInt(70, 350) / 100; // 0.70 à 1.50
+  const rot = randInt(-25, 25);
+  el.style.transform = `rotate(${rot}deg) scale(${scale})`;
+
+  chaosLayer.appendChild(el); // insertion DOM
 }

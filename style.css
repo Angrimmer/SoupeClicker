@@ -98,7 +98,6 @@ h2{ margin:0; font-size: 18px; }
   overflow:hidden;
 }
 
-/* “Pseudo-art” minimaliste: marmite + chat en CSS */
 .pot{
   width: 160px;
   height: 90px;
@@ -107,6 +106,8 @@ h2{ margin:0; font-size: 18px; }
   border-radius: 0 0 26px 26px;
   position:absolute;
   bottom: 18px;
+  right: 10%;
+  z-index: 2;
 }
 .pot::before{
   content:"";
@@ -119,33 +120,18 @@ h2{ margin:0; font-size: 18px; }
   border: 2px solid rgba(255,255,255,.18);
   background: rgba(0,0,0,.18);
 }
-.cat{
-  width: 90px;
-  height: 90px;
-  border-radius: 22px;
-  border: 2px solid rgba(255,255,255,.18);
-  background: rgba(255,255,255,.06);
-  position:absolute;
-  bottom: 68px;
-  left: 18%;
+
+.catchef{
+  position: absolute;
+  left: 0%;
+  width: 220px;     
+  height: auto;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
+  z-index: 1;
 }
-.cat::before{
-  content:"";
-  position:absolute;
-  width: 12px; height: 12px;
-  background: var(--accent);
-  border-radius: 999px;
-  left: 18px; top: 26px;
-  box-shadow: 34px 0 0 var(--accent);
-}
-.cat::after{
-  content:"";
-  position:absolute;
-  width: 28px; height: 6px;
-  border-radius: 999px;
-  background: rgba(255,255,255,.18);
-  left: 30px; top: 50px;
-}
+
 
 .big-btn{
   width: min(360px, 100%);
@@ -201,6 +187,75 @@ h2{ margin:0; font-size: 18px; }
   font-size: 12px;
   line-height: 1.35;
 }
+/************** CAT SPRITE ANIMATION **************/
+/* Base commune */
+#chaosLayer{
+  position: fixed;
+  inset: 0;
+  pointer-events: none; /* Dont block the clics */
+  z-index: 20;          /* ajuste si ça passe devant les boutons */
+}
+
+.cat-sprite{
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+/* Cat 1 */
+.cat1{
+  background-image: url("img/Cat1.png");
+  animation: cat1Idle 1s steps(8) infinite;
+}
+@keyframes cat1Idle{
+  from { background-position: 0 0; }
+  to   { background-position: -400px 0; } 
+}
+
+/* Cat 2 */
+.cat2{
+  background-image: url("img/Cat2.png");
+  animation: cat2Idle 1.1s steps(13) infinite;
+}
+@keyframes cat2Idle{
+  from { background-position: 0 0; }
+  to   { background-position: -650px 0; }
+}
+
+/* Cat 3 */
+.cat3{
+  background-image: url("img/Cat3.png");
+  animation: cat3Idle 1.2s steps(8) infinite;
+}
+@keyframes cat3Idle{
+  from { background-position: 0 0; }
+  to   { background-position: -400px 0; }
+}
+
+/* Cat 4 */
+.cat4{
+  background-image: url("img/Cat4.png");
+  animation: cat4Idle 1.2s steps(5) infinite;
+}
+@keyframes cat4Idle{
+  from { background-position: 0 0; }
+  to   { background-position: -250px 0; }
+}
+
+/* Cat 5 */
+.cat5{
+  background-image: url("img/Cat5.png");
+}
+
+/* Cat 6 */
+.cat6{
+  background-image: url("img/Cat6.png");
+}
+
+/************** Archievements **************/
 
 .toast-layer{
   position: fixed;
@@ -238,6 +293,8 @@ h2{ margin:0; font-size: 18px; }
 @keyframes toastOut{
   to { opacity: 0; transform: translateY(-10px); }
 }
+
+/************** MEDIA QUERY **************/
 
 @media (max-width: 860px){
   .layout{ grid-template-columns: 1fr; }
