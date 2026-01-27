@@ -20,7 +20,7 @@ let totalClicks = 0;
 let soupsPerClick = 1;
 let soupsPerSecond = 0;
 
-// --- SFX ---
+// --- SFX --- (sound effects)
 const sfx = {
   buy: new Audio("sfx/thanks1.wav"),
   spawns: [
@@ -36,8 +36,8 @@ sfx.spawns.forEach(a => a.volume = 0.35);
 
 function playSfx(a) {
   if (!a) return;
-  a.currentTime = 0;              // repart du début
-  a.play().catch(() => {});       // play() renvoie une Promise, peut être bloquée sans geste user
+  a.currentTime = 0;              // restart from beginning
+  a.play().catch(() => {});       // play() renvoie une Promise
 }
 
 function playRandom(list) {
