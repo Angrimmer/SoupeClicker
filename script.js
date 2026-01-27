@@ -100,7 +100,7 @@ function recomputeRates() {
   soupsPerSecond = baseSPS * mult;
 }
 
-function render() {
+function render() {                             // this function updates the interface
   soupsEl.textContent = Math.floor(soups);
 
   spcEl.textContent = soupsPerClick.toFixed(1);
@@ -196,7 +196,7 @@ function showToast(text) {
 
   setTimeout(() => {
     t.classList.add("toast--out"); 
-    setTimeout(() => t.remove(), 240);
+    setTimeout(() => t.remove(), 240); // number in ms (milliseconds)
   }, 2000);
 }
 
@@ -240,7 +240,7 @@ const ACHIEVEMENTS = [
   { id: "pot5", when: () => potLevel >= 50, msg: "Succès débloqué : Big Bang de soupe !" },
 ];
 
-function checkAchievements() {
+function checkAchievements() { //a = parameter of the function given at forEach
   ACHIEVEMENTS.forEach(a => {       
     if (unlocked[a.id]) return;
     if (a.when()) {
