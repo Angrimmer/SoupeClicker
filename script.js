@@ -20,6 +20,57 @@ let totalClicks = 0;
 let soupsPerClick = 1;
 let soupsPerSecond = 0;
 
+// --- SFX ---
+const sfx = {
+  buy: new Audio("sfx/thanks1.wav"),
+  spawns: [
+    new Audio("sfx/random1.wav"),
+    new Audio("sfx/random2.wav"),
+    new Audio("sfx/random3.wav"),
+  ],
+};
+
+// Volume global
+sfx.buy.volume = 0.25;
+sfx.spawns.forEach(a => a.volume = 0.35);
+
+function playSfx(a) {
+  if (!a) return;
+  a.currentTime = 0;              // repart du début
+  a.play().catch(() => {});       // play() renvoie une Promise, peut être bloquée sans geste user
+}
+
+function playRandom(list) {
+  const i = Math.floor(Math.random() * list.length);
+  playSfx(list[i]);
+}
+
+function randMs(minMs, maxMs) {
+  return Math.floor(Math.random() * (maxMs - minMs + 1)) + minMs;
+}
+
+const spawnUrls = ["sfx/random1.wav", "sfx/random2.wav", "sfx/random3.wav"];
+const commisLoops = [];
+
+function addCommisRandomLoop(minGapMs = 300, maxGapMs = 2000) {
+  const url = spawnUrls[Math.floor(Math.random() * spawnUrls.length)];
+  const a = new Audio(url);
+
+  a.volume = 0.20;
+  a.loop = false; // IMPORTANT : without that, 'ended' event won't fire
+
+  a.addEventListener("ended", () => {
+    const wait = randMs(minGapMs, maxGapMs);
+    setTimeout(() => {
+      a.currentTime = 0;
+      a.play().catch(() => {});
+    }, wait); // setTimeout enables random gap
+  });
+
+  commisLoops.push(a);
+  a.play().catch(() => {});
+}
+
 let spoonLevel = 0;
 const spoonBaseCost = 15;
 function spoonCost() {
@@ -82,8 +133,9 @@ buySpoonBtn.addEventListener("click", (e) => {
 
   soups -= cost;
   spoonLevel += 1;
-  baseSPC += 1;     
-  recomputeRates(); 
+  baseSPC += 1;    
+  recomputeRates();
+  playSfx(sfx.buy);  
   checkAchievements()
   render();
 });
@@ -98,8 +150,11 @@ buyCommisBtn.addEventListener("click", (e) => {
   commisLevel += 1;
   baseSPS += 0.2;   
   recomputeRates();
+  playSfx(sfx.buy);
   checkAchievements()
   spawnCommisCat();
+  addCommisRandomLoop(300, 2000);
+  playRandom(sfx.spawns);
   render();
 });
 
@@ -111,7 +166,8 @@ buyPotBtn.addEventListener("click", (e) => {
 
   soups -= cost;
   potLevel += 1;
-  recomputeRates(); 
+  recomputeRates();
+  playSfx(sfx.buy); 
   checkAchievements()
   render();
 });
